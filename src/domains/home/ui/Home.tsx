@@ -1,19 +1,16 @@
-import styled from 'styled-components/native';
-import AppScreen from '../../../shared/ui/AppScreen';
-import measurements from '../../../shared/measurements';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Button, Text} from 'react-native';
-import {useCallback} from 'react';
-import {StackNavigationProp, StackScreenProps} from '@react-navigation/stack';
+import AppScreen from "../../../shared/ui/AppScreen";
+import { Button } from "react-native";
+import { useCallback } from "react";
+import { StackScreenProps } from "@react-navigation/stack";
 
-function Home({navigation}: StackScreenProps<any>) {
+function Home({ navigation }: StackScreenProps<any>) {
   const handleOnAnimationPress = useCallback(() => {
-    navigation.navigate('Animation');
+    navigation.navigate("Card Animation");
   }, []);
 
   return (
     <AppScreen>
-      <Button title="Animation" onPress={handleOnAnimationPress} />
+      <Button title="Card Animation" onPress={handleOnAnimationPress} />
     </AppScreen>
   );
 }

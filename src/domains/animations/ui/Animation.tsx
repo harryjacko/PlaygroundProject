@@ -1,13 +1,12 @@
-import AppScreen from '../../../shared/ui/AppScreen';
+import AppScreen from "../../../shared/ui/AppScreen";
 import {
   BlurMask,
   Canvas,
-  LinearGradient,
   RoundedRect,
   SweepGradient,
   vec,
-} from '@shopify/react-native-skia';
-import styled from 'styled-components/native';
+} from "@shopify/react-native-skia";
+import styled from "styled-components/native";
 import Animated, {
   Easing,
   Extrapolation,
@@ -15,18 +14,13 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from 'react-native-reanimated';
-import {
-  Gesture,
-  GestureDetector,
-  GestureUpdateEvent,
-  PanGestureHandlerEventPayload,
-} from 'react-native-gesture-handler';
+} from "react-native-reanimated";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
 const rectPadding = 12;
 const height = 200;
-const width = 350;
-const padding = 20;
+const width = 320;
+const padding = 50;
 const rotationRange = 8;
 
 const Wrapper = styled.View`
@@ -35,11 +29,11 @@ const Wrapper = styled.View`
 `;
 
 const RoundRec = styled(Animated.View)`
-  background-color: black;
+  background-color: white;
   height: ${height - rectPadding / 2}px;
   width: ${width - rectPadding / 2}px;
   position: absolute;
-  border-radius: 20px;
+  border-radius: 18px;
   z-index: 100;
 `;
 
@@ -56,12 +50,12 @@ function Gradient() {
         y={padding / 2}
         height={height}
         width={width}
-        color={'white'}>
+        color={"white"}>
         <SweepGradient
-          colors={['#39FF14', '#00FFFF', '#9900FF', '#39FF14']}
+          colors={["#39FF14", "#00FFFF", "#9900FF", "#39FF14"]}
           c={vec((width + padding) / 2, (height + padding) / 2)}
         />
-        <BlurMask blur={8} style={'solid'} />
+        <BlurMask blur={8} style={"solid"} />
       </RoundedRect>
     </Canvas>
   );
@@ -77,7 +71,7 @@ function Animation() {
   const y = useSharedValue(0);
 
   const gesture = Gesture.Pan()
-    .onBegin(e => {
+    .onBegin((e) => {
       x.value = withTiming(
         interpolate(
           e.y,
@@ -85,7 +79,7 @@ function Animation() {
           [rotationRange, -rotationRange],
           Extrapolation.CLAMP,
         ),
-        {easing: Easing.elastic()},
+        { easing: Easing.elastic() },
       );
       y.value = withTiming(
         interpolate(
@@ -94,10 +88,10 @@ function Animation() {
           [-rotationRange, rotationRange],
           Extrapolation.CLAMP,
         ),
-        {easing: Easing.elastic()},
+        { easing: Easing.elastic() },
       );
     })
-    .onUpdate(e => {
+    .onUpdate((e) => {
       x.value = interpolate(
         e.y,
         [0, width],
@@ -112,15 +106,15 @@ function Animation() {
       );
     })
     .onFinalize(() => {
-      x.value = withTiming(0, {easing: Easing.elastic()});
-      y.value = withTiming(0, {easing: Easing.elastic()});
+      x.value = withTiming(0, { easing: Easing.elastic() });
+      y.value = withTiming(0, { easing: Easing.elastic() });
     });
   const transformStyle = useAnimatedStyle(() => {
     return {
       transform: [
-        {perspective: 300},
-        {rotateX: `${x.value}deg`},
-        {rotateY: `${y.value}deg`},
+        { perspective: 300 },
+        { rotateX: `${x.value}deg` },
+        { rotateY: `${y.value}deg` },
       ],
     };
   }, []);
