@@ -2,6 +2,12 @@
 
 Playground app to mess around with. Feel free to poke around
 
+## Card Animation
+
+https://github.com/user-attachments/assets/72d9c267-9bb2-4cae-aff5-c8187d863f4f
+
+
+
 > **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
 ## Step 1: Start the Metro Server
